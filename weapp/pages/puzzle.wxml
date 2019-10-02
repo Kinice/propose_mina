@@ -1,0 +1,11 @@
+
+<view class="container">
+  <view class="title">{{puzzleList[nowStatus - 1].title}}</view>
+  <view class="description">{{puzzleList[nowStatus - 1].description}}</view>
+  <view class="description">
+    <button data-wpy-evt="15-38" bindtap="_proxy" class="cu-btn bg-olive">我到了</button>
+  </view>
+  <view wx:if="{{ showWrong }}" class="description">
+    <button data-wpy-evt="15-39" bindtap="_proxy" class="cu-btn bg-olive">垃圾程序员，我明明到了</button>
+  </view>
+</view>

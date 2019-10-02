@@ -1,0 +1,68 @@
+<script>
+import wepy from '@wepy/core';
+import eventHub from './common/eventHub';
+import vuex from '@wepy/x';
+
+wepy.use(vuex);
+
+wepy.app({
+  hooks: {
+    // App 级别 hook，对整个 App 生效
+    // 同时存在 Page hook 和 App hook 时，优先执行 Page hook，返回值再交由 App hook 处
+    'before-setData': function (dirty) {
+      return dirty;
+    }
+  },
+  globalData: {
+    userInfo: null
+  },
+
+  onLaunch() {
+    eventHub.$on('app-launch', (...args) => {
+      console.log('app-launch event emitted, the params are:');
+      console.log(args);
+    });
+    Promise.prototype.finally = function (callback) {
+      let P = this.constructor
+      return this.then(
+        value => P.resolve(callback()).then(() => value),
+        reason => P.resolve(callback()).then(() => { throw reason })
+      )
+    }
+  }
+});
+</script>
+<config>
+  {
+    pages: [
+      'pages/home',
+      'pages/puzzle',
+      'pages/mail',
+    ],
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#FFFAFA',
+      navigationBarTitleText: '烟雨之谜',
+      navigationBarTextStyle: 'black'
+    },
+    permission: {
+      "scope.userLocation": {
+        desc: '你的位置信息将用于小程序位置接口的效果展示'
+      }
+    }
+  }
+</config>
+<style lang="less">
+@import 'assets/wxss/main.wxss';
+@import 'assets/wxss/icon.wxss';
+@import 'assets/wxss/animation.wxss';
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  font-weight: 200;
+}
+</style>

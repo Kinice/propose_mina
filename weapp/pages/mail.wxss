@@ -1,0 +1,23 @@
+page {
+  background-color: #FFFAFA;
+}
+.container {
+  text-align: center;
+  padding-top: 20rpx;
+  padding-bottom: 200rpx;
+}
+.container .item {
+  font-size: 32rpx;
+  margin-bottom: 30rpx;
+  opacity: 0;
+  transition: opacity 0.4s linear;
+}
+.container .item .img {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+.container .show {
+  opacity: 1;
+}
+

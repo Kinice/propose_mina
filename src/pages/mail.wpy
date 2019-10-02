@@ -1,0 +1,145 @@
+<template>
+  <div class="container">
+    <div class="item" :class="{'show': statusList[0]}">亲爱的</div>
+    <div class="item" :class="{'show': statusList[1]}">我们的热恋期已经持续<span class="text-olive">{{days}}</span>天了</div>
+    <div class="item" :class="{'show': statusList[2]}">这些天</div>
+    <div class="item" :class="{'show': statusList[3]}">我们一起做了部长</div>
+    <div class="item" :class="{'show': statusList[4]}">一起去了北京</div>
+    <div class="item" :class="{'show': statusList[5]}">一起走过了许多地方——</div>
+    <div class="item" :class="{'show': statusList[6]}">
+      <view class="cu-timeline" style="background-color: transparent;">
+        <div class="cu-time">13/06/08</div>
+        <view class="cu-item cur cuIcon-location">
+          <view class="content bg-blue shadow-blur">
+            烟台
+          </view>
+        </view>
+        <view class="cu-item cur cuIcon-location">
+          <view class="content bg-cyan shadow-blur">
+            青岛
+          </view>
+        </view>
+        <view class="cu-item cur cuIcon-location">
+          <view class="content bg-yellow shadow-blur">
+            济南
+          </view>
+        </view>
+        <view class="cu-item cur cuIcon-location">
+          <view class="content bg-grey shadow-blur">
+            上海
+          </view>
+        </view>
+        <view class="cu-item cur cuIcon-location">
+          <view class="content bg-brown shadow-blur">
+            天津
+          </view>
+        </view>
+        <view class="cu-item cur cuIcon-location">
+          <view class="content bg-olive shadow-blur">
+            杭州
+          </view>
+        </view>
+        <view class="cu-item cur cuIcon-location">
+          <view class="content bg-green shadow-blur">
+            成都
+          </view>
+        </view>
+        <view class="cu-item cur cuIcon-location">
+          <view class="content bg-purple shadow-blur">
+            大连
+          </view>
+        </view>
+        <view class="cu-item cur cuIcon-location">
+          <view class="content bg-blue shadow-blur">
+            烟台
+          </view>
+        </view>
+      </view>
+    </div>
+    <div class="item" :class="{'show': statusList[7]}">我们都不完美</div>
+    <div class="item" :class="{'show': statusList[8]}">但我们都在努力为了对方变好</div>
+    <div class="item" :class="{'show': statusList[9]}">因为 我爱你 你爱我❤️</div>
+    <div class="item" :class="{'show': statusList[10]}">之前</div>
+    <div class="item" :class="{'show': statusList[11]}">上海世博园的情景我依旧历历在目</div>
+    <div class="item" :class="{'show': statusList[12]}">我欠你一个交代</div>
+    <div class="item" :class="{'show': statusList[13]}">现在</div>
+    <div class="item" :class="{'show': statusList[14]}">我陪你走过了我们的过去</div>
+    <div class="item" :class="{'show': statusList[15]}">带你回到最初的地方</div>
+    <div class="item" :class="{'show': statusList[16]}">对你说一声</div>
+    <div class="item" :class="{'show': statusList[17]}">我爱你</div>
+    <div class="item" :class="{'show': statusList[18]}">看前面——</div>
+  </div>
+</template>
+<script>
+  import wepy from '@wepy/core'
+  wepy.page({
+    data: {
+      days: 0,
+      statusList: {
+        0: false,
+        1: false,
+        2: false,
+        3: false,
+        4: false,
+        5: false,
+        6: false,
+        7: false,
+        8: false,
+        9: false,
+        10: false,
+        11: false,
+        12: false,
+        13: false,
+        14: false,
+        15: false,
+        16: false,
+        17: false,
+        18: false
+      }
+    },
+    methods: {
+      loginFadeIn() {
+        for (let i in this.statusList) {
+          setTimeout(() => {
+            this.statusList[i] = true
+          }, (i + 1) * 200)
+        }
+      }
+    },
+    onLoad(e) {
+      let oldDay = +new Date('2013/06/08')
+      let now = +new Date()
+      this.days = parseInt((now - oldDay) / 1000 / 3600 / 24)
+      this.loginFadeIn()
+    }
+  })
+</script>
+<config>
+  {
+    navigationBarTitleText: '一封信'
+  }
+</config>
+<style lang="less">
+  page{
+    background-color: #FFFAFA;
+  }
+  .container{
+    text-align: center;
+    padding-top: 20rpx;
+    padding-bottom: 200rpx;
+    .item{
+      font-size: 32rpx;
+      margin-bottom: 30rpx;
+      opacity: 0;
+      transition: opacity .4s linear;
+      .img{
+        width: 100rpx;
+        height: 100rpx;
+        border-radius: 50%;
+      }
+    }
+    .show{
+      opacity: 1;
+    }
+  }
+</style>

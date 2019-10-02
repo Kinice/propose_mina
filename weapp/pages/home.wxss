@@ -1,0 +1,30 @@
+page {
+  background-color: #FFFAFA;
+}
+.container .nologin {
+  text-align: center;
+  padding-top: 200rpx;
+}
+.container .nologin .word {
+  font-size: 36rpx;
+  margin-bottom: 30rpx;
+}
+.container .main {
+  text-align: center;
+  padding-top: 20rpx;
+}
+.container .main .item {
+  font-size: 32rpx;
+  margin-bottom: 30rpx;
+  opacity: 0;
+  transition: opacity 0.4s linear;
+}
+.container .main .item .img {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+.container .main .show {
+  opacity: 1;
+}
+

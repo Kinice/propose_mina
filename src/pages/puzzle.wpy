@@ -1,0 +1,234 @@
+<template>
+  <div class="container">
+    <div class="title">{{puzzleList[nowStatus - 1].title}}</div>
+    <div class="description">{{puzzleList[nowStatus - 1].description}}</div>
+    <div class="description">
+      <button class="cu-btn bg-olive" @tap="imHere">我到了</button>
+    </div>
+    <div class="description" v-if="showWrong">
+      <button class="cu-btn bg-olive" @tap="imWrong">垃圾程序员，我明明到了</button>
+    </div>
+  </div>
+</template>
+<script>
+  import wepy from '@wepy/core'
+  wepy.page({
+    data: {
+      nowStatus: 1,
+      puzzleList: [{
+        title: 'Puzzle 1',
+        description: '黄海之滨，以人为名，虽居海滨，不常踏足',
+        location: {
+          latitude: 37.4797538329,
+          longitude: 121.4609599113
+        },
+        name: '于维弘学术交流中心'
+      }, {
+        title: 'Puzzle 2',
+        description: '又进村里，尽为海风折腰',
+        location: {
+          latitude: 37.4779573435,
+          longitude: 121.4598977566
+        },
+        name: '小树林'
+      }, {
+        title: 'Puzzle 3',
+        description: '2πr=400m的中央',
+        location: {
+          latitude: 37.4765993051,
+          longitude: 121.4614534378
+        },
+        name: '体育场'
+      }, {
+        title: 'Puzzle 4',
+        description: '餐饮娱乐洗浴生活中心',
+        location: {
+          latitude: 37.4731210817,
+          longitude: 121.4621776342
+        },
+        name: '第七餐厅'
+      }, {
+        title: 'Puzzle 5',
+        description: '中轴线中，穹顶之下',
+        location: {
+          latitude: 37.4720354341,
+          longitude: 121.4577680826
+        },
+        name: '综合楼大门'
+      }, {
+        title: 'Puzzle 6',
+        description: '谁人降白蛇',
+        location: {
+          latitude: 37.4708220446,
+          longitude: 121.4559227228
+        },
+        name: '法学院与海洋学院'
+      }, {
+        title: 'Puzzle 7',
+        description: '一个永远被叫错名字的交通设施',
+        location: {
+          latitude: 37.4753221305,
+          longitude: 121.4585834742
+        },
+        name: '三元桥？'
+      }, {
+        title: 'Puzzle 8',
+        description: '高建筑，高精确，高科技',
+        location: {
+          latitude: 37.4760458655,
+          longitude: 121.4571404457
+        },
+        name: '钟楼'
+      }, {
+        title: 'Puzzle 9',
+        description: '八条路',
+        location: {
+          latitude: 37.4771910553,
+          longitude: 121.4563840628
+        },
+        name: '八景园'
+      }, {
+        title: 'Puzzle 10',
+        description: '横眉冷对千夫指，',
+        location: {
+          latitude: 37.4751433243,
+          longitude: 121.4547747374
+        },
+        name: '孺子牛'
+      }, {
+        title: 'Puzzle 11',
+        description: '命运的交叉点',
+        location: {
+          latitude: 37.4750922367,
+          longitude: 121.4536750317
+        },
+        name: '十字路口'
+      }, ],
+      PI: 3.1415926,
+      EARTH_RADIUS: 6378137.0,
+      distance: 99999,
+      maxDiff: 300,
+      wrongCount: 0,
+      showWrong: false
+    },
+    methods: {
+      imHere() {
+        wx.getLocation({
+          type: 'gcj02',
+          success: res => {
+            this.location = res
+            this.distance = this.getGreatCircleDistance(res.latitude, res.longitude, this.puzzleList[this.nowStatus - 1].location.latitude, this.puzzleList[this.nowStatus - 1].location.longitude)
+            if (this.distance < this.maxDiff) {
+              if (this.nowStatus < this.puzzleList.length) {
+                wx.showModal({
+                  title: '恭喜',
+                  content: `就是这里：${this.puzzleList[this.nowStatus - 1].name}，先看美景再去下一关吧！`,
+                  showCancel: false,
+                  success: res => {
+                    if (res.confirm) {
+                      this.nowStatus += 1
+                      wx.setStorageSync('status', this.nowStatus)
+                    }
+                  }
+                })
+              } else {
+                wx.showModal({
+                  title: '恭喜',
+                  content: '你已经完成游览了，快去领取你的奖品吧！',
+                  showCancel: false,
+                  success: res => {
+                    if (res.confirm) {
+                      wx.redirectTo({
+                        url: 'mail'
+                      })
+                    }
+                  }
+                })
+              }
+            } else {
+              wx.showToast({
+                icon: 'none',
+                title: '不是这里哦',
+                duration: 2500
+              })
+              this.wrongCount++
+              if (this.wrongCount >= 5) {
+                this.showWrong = true
+              }
+            }
+            console.log(res, this.distance)
+          }
+        })
+      },
+      imWrong() {
+        this.wrongCount = 0
+        this.showWrong = false
+        if (this.nowStatus < this.puzzleList.length) {
+          wx.showModal({
+            title: '好吧',
+            content: `是${this.puzzleList[this.nowStatus - 1].name}，你说的对😑`,
+            showCancel: false,
+            success: res => {
+              if (res.confirm) {
+                this.nowStatus += 1
+                wx.setStorageSync('status', this.nowStatus)
+              }
+            }
+          })
+        } else {
+          wx.showModal({
+            title: '恭喜',
+            content: '你已经完成游览了，快去领取你的奖品吧！',
+            showCancel: false,
+            success: res => {
+              if (res.confirm) {
+                wx.redirectTo({
+                  url: 'mail'
+                })
+              }
+            }
+          })
+        }
+      },
+      getRad(d) {
+        return d * this.PI / 180.0
+      },
+      getGreatCircleDistance(lat1, lng1, lat2, lng2) {
+        let radLat1 = this.getRad(lat1)
+        let radLat2 = this.getRad(lat2)
+        let a = radLat1 - radLat2
+        let b = this.getRad(lng1) - this.getRad(lng2)
+        let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)))
+        s = s * this.EARTH_RADIUS
+        s = Math.round(s * 10000) / 10000.0
+        return s
+      }
+    },
+    onLoad(e) {
+      if (e.status) {
+        this.nowStatus = parseInt(e.status)
+        wx.setStorageSync('status', this.nowStatus)
+      }
+    }
+  })
+</script>
+<config>
+  {
+    navigationBarTitleText: '谜题'
+  }
+</config>
+<style lang="less">
+  page{
+    background-color: #FFFAFA;
+  }
+  .container{
+    .title{
+      font-size: 40rpx;
+      margin-bottom: 40rpx;
+    }
+    .description{
+      font-size: 30rpx;
+      margin-bottom: 100rpx;
+    }
+  }
+</style>

@@ -1,0 +1,71 @@
+
+<view class="container">
+  <view class="item {{ [ statusList[0] ? 'show' : '' ] }}">亲爱的</view>
+  <view class="item {{ [ statusList[1] ? 'show' : '' ] }}">我们的热恋期已经持续<label class="text-olive">{{days}}</label>天了</view>
+  <view class="item {{ [ statusList[2] ? 'show' : '' ] }}">这些天</view>
+  <view class="item {{ [ statusList[3] ? 'show' : '' ] }}">我们一起做了部长</view>
+  <view class="item {{ [ statusList[4] ? 'show' : '' ] }}">一起去了北京</view>
+  <view class="item {{ [ statusList[5] ? 'show' : '' ] }}">一起走过了许多地方——</view>
+  <view class="item {{ [ statusList[6] ? 'show' : '' ] }}">
+    <view style="background-color: transparent;" class="cu-timeline">
+      <view class="cu-time">13/06/08</view>
+      <view class="cu-item cur cuIcon-location">
+        <view class="content bg-blue shadow-blur">
+          烟台
+        </view>
+      </view>
+      <view class="cu-item cur cuIcon-location">
+        <view class="content bg-cyan shadow-blur">
+          青岛
+        </view>
+      </view>
+      <view class="cu-item cur cuIcon-location">
+        <view class="content bg-yellow shadow-blur">
+          济南
+        </view>
+      </view>
+      <view class="cu-item cur cuIcon-location">
+        <view class="content bg-grey shadow-blur">
+          上海
+        </view>
+      </view>
+      <view class="cu-item cur cuIcon-location">
+        <view class="content bg-brown shadow-blur">
+          天津
+        </view>
+      </view>
+      <view class="cu-item cur cuIcon-location">
+        <view class="content bg-olive shadow-blur">
+          杭州
+        </view>
+      </view>
+      <view class="cu-item cur cuIcon-location">
+        <view class="content bg-green shadow-blur">
+          成都
+        </view>
+      </view>
+      <view class="cu-item cur cuIcon-location">
+        <view class="content bg-purple shadow-blur">
+          大连
+        </view>
+      </view>
+      <view class="cu-item cur cuIcon-location">
+        <view class="content bg-blue shadow-blur">
+          烟台
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="item {{ [ statusList[7] ? 'show' : '' ] }}">我们都不完美</view>
+  <view class="item {{ [ statusList[8] ? 'show' : '' ] }}">但我们都在努力为了对方变好</view>
+  <view class="item {{ [ statusList[9] ? 'show' : '' ] }}">因为 我爱你 你爱我❤️</view>
+  <view class="item {{ [ statusList[10] ? 'show' : '' ] }}">之前</view>
+  <view class="item {{ [ statusList[11] ? 'show' : '' ] }}">上海世博园的情景我依旧历历在目</view>
+  <view class="item {{ [ statusList[12] ? 'show' : '' ] }}">我欠你一个交代</view>
+  <view class="item {{ [ statusList[13] ? 'show' : '' ] }}">现在</view>
+  <view class="item {{ [ statusList[14] ? 'show' : '' ] }}">我陪你走过了我们的过去</view>
+  <view class="item {{ [ statusList[15] ? 'show' : '' ] }}">带你回到最初的地方</view>
+  <view class="item {{ [ statusList[16] ? 'show' : '' ] }}">对你说一声</view>
+  <view class="item {{ [ statusList[17] ? 'show' : '' ] }}">我爱你</view>
+  <view class="item {{ [ statusList[18] ? 'show' : '' ] }}">看前面——</view>
+</view>

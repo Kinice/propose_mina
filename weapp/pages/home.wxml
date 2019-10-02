@@ -1,0 +1,54 @@
+
+  <view class="container">
+    <view wx:if="{{ isLogin }}" class="main">
+      <view class="item part1 {{ [ statusList[\'list1\'][0] ? 'show' : '' ] }}">Hello!</view>
+      <view class="item part1 {{ [ statusList[\'list1\'][1] ? 'show' : '' ] }}">
+        <image src="{{ userInfo.avatarUrl }}" class="img"></image>
+        <view>可爱的 {{userInfo.nickName}}</view>
+      </view>
+      <view class="item part1 {{ [ statusList[\'list1\'][2] ? 'show' : '' ] }}">
+        欢迎来到 <label class="text-olive">烟雨之谜</label>
+      </view>
+      <view wx:if="{{ !hasLocationAuth }}" class="item part1 {{ [ statusList[\'list1\'][3] ? 'show' : '' ] }}">
+        请先给我一个授权
+      </view>
+      <view wx:if="{{ !hasLocationAuth }}" class="item part1 {{ [ statusList[\'list1\'][4] ? 'show' : '' ] }}">
+        <button data-wpy-evt="5-12" bindtap="_proxy" class="cu-btn bg-olive">授权</button>
+      </view>
+      <view class="item part2 {{ [ statusList[\'list2\'][0] ? 'show' : '' ] }}">
+        OK 下面来说明使用方法
+      </view>
+      <view class="item part2 {{ [ statusList[\'list2\'][1] ? 'show' : '' ] }}">
+        我会先给你一个谜题 答案是一个地方
+      </view>
+      <view class="item part2 {{ [ statusList[\'list2\'][2] ? 'show' : '' ] }}">
+        聪明的你想到答案后 就去那个地方 点击 <label class="text-olive">我到了</label>
+      </view>
+      <view class="item part2 {{ [ statusList[\'list2\'][3] ? 'show' : '' ] }}">
+        我就会带你到下一个地方
+      </view>
+      <view class="item part2 {{ [ statusList[\'list2\'][4] ? 'show' : '' ] }}">
+        由于定位精度 可能会不太准确
+      </view>
+      <view class="item part2 {{ [ statusList[\'list2\'][5] ? 'show' : '' ] }}">
+        坚定你的想法 多点几次 <label class="text-olive">我到了</label>
+      </view>
+      <view class="item part2 {{ [ statusList[\'list2\'][6] ? 'show' : '' ] }}">
+        当你答出最后一个谜题 本次游览也到此结束
+      </view>
+      <view class="item part2 {{ [ statusList[\'list2\'][7] ? 'show' : '' ] }}">别急</view>
+      <view class="item part2 {{ [ statusList[\'list2\'][8] ? 'show' : '' ] }}">
+        你还会得到一份<label class="text-olive">精美大奖</label>🎁
+      </view>
+      <view class="item part2 {{ [ statusList[\'list2\'][9] ? 'show' : '' ] }}">
+        <button data-wpy-evt="5-13" bindtap="_proxy" class="cu-btn bg-olive">准备好了 就点这里</button>
+      </view>
+
+    </view>
+    <view wx:else class="nologin">
+      <view class="word">
+        请先登录
+      </view>
+      <button open-type="getUserInfo" data-wpy-evt="5-14" bindgetuserinfo="_proxy" class="cu-btn bg-olive margin-tb-sm lg">登录</button>
+    </view>
+  </view>

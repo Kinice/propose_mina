@@ -1,0 +1,12 @@
+page {
+  background-color: #FFFAFA;
+}
+.container .title {
+  font-size: 40rpx;
+  margin-bottom: 40rpx;
+}
+.container .description {
+  font-size: 30rpx;
+  margin-bottom: 100rpx;
+}
+
